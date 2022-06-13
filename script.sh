@@ -9,8 +9,11 @@ read -r ORGNAME
 echo "Enter repo dir for cloning"
 read -r REPODIR
 
-echo "Enter number repositories"
-read -r REPODIR
+echo "Enter start page repositories"
+read -r STARTPAGE
+
+echo "Enter end page repositories"
+read -r ENDPAGE
 
 echo "Start Cloning"
 
@@ -30,9 +33,9 @@ function cloneRepo() {
 
 }
 
-for ((i = 45; i <= $NUMBERPAGE; i++)); do
+for (($STARTPAGE; $STARTPAGE <= $ENDPAGE; STARTPAGE++)); do
 
-  repo_name=$(getRepoName $TOKEN $ORGNAME $i)
+  repo_name=$(getRepoName $TOKEN $ORGNAME $STARTPAGE)
 
   if [ -z "$repo_name" ]; then
     break
